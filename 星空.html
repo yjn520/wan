@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>星空</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				width: 100%;
+				height: 100%;
+				background: url(./xk.jpg);
+			}
+			.wrap{
+				width: 600px;
+				height: 600px;
+				position: fixed;
+				transform-style: preserve-3d;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+			.wrap .box1{
+				width: 180px;
+				height: 180px;
+				position: fixed;
+				transform-style: preserve-3d;
+				animation: b2 15s linear infinite;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+			.wrap span{
+				position: absolute;
+				top:0px ;
+				left: 0px;
+				width: 180px;
+				height: 180px;
+				border:1px solid #f5fd1f;
+				border-radius: 50%;
+				
+			}
+			.wrap span:nth-child(2){
+				transform: rotateX(40deg);
+			}
+			.wrap span:nth-child(3){
+				transform: rotateX(80deg);
+			}
+			.wrap span:nth-child(4){
+				transform: rotateX(120deg);
+			}
+			.wrap span:nth-child(5){
+				transform: rotateX(160deg);
+			}
+			.wrap span:nth-child(6){
+				transform: rotateX(200deg);
+			}
+			.wrap span:nth-child(7){
+				transform: rotateX(240deg);
+			}
+			.wrap span:nth-child(8){
+				transform: rotateX(280deg);
+			}
+			.wrap span:nth-child(9){
+				transform: rotateX(320deg);
+			}
+			.wrap span:nth-child(10){
+				transform: rotateY(360deg);
+			}
+			.wrap span:nth-child(11){
+				transform: rotateY(40deg);
+			}
+			.wrap span:nth-child(12){
+				transform: rotateY(80deg);
+			}
+			.wrap span:nth-child(13){
+				transform: rotateY(120deg);
+			}
+			.wrap span:nth-child(14){
+				transform: rotateY(160deg);
+			}
+			.wrap span:nth-child(15){
+				transform: rotateY(200deg);
+			}
+			.wrap span:nth-child(16){
+				transform: rotateY(240deg);
+			}
+			.wrap span:nth-child(17){
+				transform: rotateY(280deg);
+			}
+			.wrap span:nth-child(18){
+				transform: rotateY(320deg);
+			}
+			.wrap .box2{
+				width: 400px;
+				height: 400px;
+				border:2px solid #fff;
+				border-radius: 50%;
+				transform-style: preserve-3d;
+				transform: rotateX(60deg) rotateY(-10deg);
+				position: fixed;
+				top: 16px;
+				bottom: 0;
+				left: 0px;
+				right: 0;
+				margin: auto;
+				animation: b1 20s linear infinite;
+			}
+			.wrap .box2 span{
+				position: absolute;
+				top: 0px;
+				left: 65px;
+				width: 50px;
+				height: 50px;
+				border: solid 1px #33e8fd;
+			}
+			.wrap .box3{
+				width: 550px;
+				height: 550px;
+				border:2px solid #fff;
+				border-radius: 50%;
+				transform-style: preserve-3d;
+				transform: rotateX(60deg) rotateY(-10deg);
+				animation: b1 25s linear infinite;
+				position: fixed;
+				top: 3px;
+				bottom: 0;
+				left: 0px;
+				right: 0;
+				margin: auto;
+			}
+			.wrap .box3 span{
+				position: absolute;
+				top: 405px;
+				left: 30px;
+				width: 80px;
+				height: 80px;
+				border: solid 1px #33e8fd;
+			}
+			.wrap .box4{
+				width: 700px;
+				height: 700px;
+				border:2px solid #fff;
+				border-radius: 50%;
+				transform-style: preserve-3d;
+				transform: rotateX(60deg) rotateY(-10deg);
+				animation: b1 30s linear infinite;
+				position: fixed;
+				top: -16px;
+				bottom: 0;
+				left: -48px;
+				right: 0;
+				margin: auto;
+			}
+			.wrap .box4 span{
+				position: absolute;
+				top: 35px;
+				left: 30px;
+				width: 120px;
+				height: 120px;
+				border: solid 1px #33e8fd;
+			}
+			@keyframes b1{
+				0%{
+					transform:  rotateX(60deg) rotateY(-10deg) rotateZ(0deg);
+				}
+				100%{
+					transform:  rotateX(60deg) rotateY(-10deg) rotateZ(360deg);
+				}
+			}
+			@keyframes b2{
+				0%{
+					transform: rotateX(0deg) rotateY(0deg);
+				}
+				100%{
+					transform: rotateX(360deg) rotateY(360deg);
+				}
+			}
+			.wan{
+				font-size: 36px;
+				color:blue;
+			
+				animation: wan 1s linear infinite;
+			}
+				@keyframes wan{
+				0%{
+					color:lightblue;
+						display: none;
+				}
+				65%{
+					color: #f5fd1f;
+					display: block;
+				}
+				100%{
+					color:purple;
+					display: block;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="wan">
+				<h1>晚</h1>
+				<h1>安</h1>
+			</div>
+			<div class="box1">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="box2">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="box3">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="box4">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</body>
+</html>
