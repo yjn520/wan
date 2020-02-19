@@ -1,295 +1,327 @@
 ﻿<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>星空</title>
-		<style type="text/css">
-			*{
-				margin: 0;
-				padding: 0;
-			}
-			html,body{
-				width: 100%;
-				height: 100%;
-				background: url(./xk.jpg);
-			}
-			.wrap{
-				width: 600px;
-				height: 600px;
-				position: fixed;
-				transform-style: preserve-3d;
-				top: 0;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				margin: auto;
-			}
-			.wrap .box1{
-				width: 180px;
-				height: 180px;
-				position: fixed;
-				transform-style: preserve-3d;
-				animation: b2 15s linear infinite;
-				top: 0;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				margin: auto;
-			}
-			.wrap span{
-				position: absolute;
-				top:0px ;
-				left: 0px;
-				width: 180px;
-				height: 180px;
-				border:1px solid #f5fd1f;
-				border-radius: 50%;
-				
-			}
-			.wrap span:nth-child(2){
-				transform: rotateX(40deg);
-			}
-			.wrap span:nth-child(3){
-				transform: rotateX(80deg);
-			}
-			.wrap span:nth-child(4){
-				transform: rotateX(120deg);
-			}
-			.wrap span:nth-child(5){
-				transform: rotateX(160deg);
-			}
-			.wrap span:nth-child(6){
-				transform: rotateX(200deg);
-			}
-			.wrap span:nth-child(7){
-				transform: rotateX(240deg);
-			}
-			.wrap span:nth-child(8){
-				transform: rotateX(280deg);
-			}
-			.wrap span:nth-child(9){
-				transform: rotateX(320deg);
-			}
-			.wrap span:nth-child(10){
-				transform: rotateY(360deg);
-			}
-			.wrap span:nth-child(11){
-				transform: rotateY(40deg);
-			}
-			.wrap span:nth-child(12){
-				transform: rotateY(80deg);
-			}
-			.wrap span:nth-child(13){
-				transform: rotateY(120deg);
-			}
-			.wrap span:nth-child(14){
-				transform: rotateY(160deg);
-			}
-			.wrap span:nth-child(15){
-				transform: rotateY(200deg);
-			}
-			.wrap span:nth-child(16){
-				transform: rotateY(240deg);
-			}
-			.wrap span:nth-child(17){
-				transform: rotateY(280deg);
-			}
-			.wrap span:nth-child(18){
-				transform: rotateY(320deg);
-			}
-			.wrap .box2{
-				width: 400px;
-				height: 400px;
-				border:2px solid #fff;
-				border-radius: 50%;
-				transform-style: preserve-3d;
-				transform: rotateX(60deg) rotateY(-10deg);
-				position: fixed;
-				top: 16px;
-				bottom: 0;
-				left: 0px;
-				right: 0;
-				margin: auto;
-				animation: b1 20s linear infinite;
-			}
-			.wrap .box2 span{
-				position: absolute;
-				top: 0px;
-				left: 65px;
-				width: 50px;
-				height: 50px;
-				border: solid 1px #33e8fd;
-			}
-			.wrap .box3{
-				width: 550px;
-				height: 550px;
-				border:2px solid #fff;
-				border-radius: 50%;
-				transform-style: preserve-3d;
-				transform: rotateX(60deg) rotateY(-10deg);
-				animation: b1 25s linear infinite;
-				position: fixed;
-				top: 3px;
-				bottom: 0;
-				left: 0px;
-				right: 0;
-				margin: auto;
-			}
-			.wrap .box3 span{
-				position: absolute;
-				top: 405px;
-				left: 30px;
-				width: 80px;
-				height: 80px;
-				border: solid 1px #33e8fd;
-			}
-			.wrap .box4{
-				width: 700px;
-				height: 700px;
-				border:2px solid #fff;
-				border-radius: 50%;
-				transform-style: preserve-3d;
-				transform: rotateX(60deg) rotateY(-10deg);
-				animation: b1 30s linear infinite;
-				position: fixed;
-				top: -16px;
-				bottom: 0;
-				left: -48px;
-				right: 0;
-				margin: auto;
-			}
-			.wrap .box4 span{
-				position: absolute;
-				top: 35px;
-				left: 30px;
-				width: 120px;
-				height: 120px;
-				border: solid 1px #33e8fd;
-			}
-			@keyframes b1{
-				0%{
-					transform:  rotateX(60deg) rotateY(-10deg) rotateZ(0deg);
-				}
-				100%{
-					transform:  rotateX(60deg) rotateY(-10deg) rotateZ(360deg);
-				}
-			}
-			@keyframes b2{
-				0%{
-					transform: rotateX(0deg) rotateY(0deg);
-				}
-				100%{
-					transform: rotateX(360deg) rotateY(360deg);
-				}
-			}
-			.wan{
-				font-size: 36px;
-				color:blue;
-			
-				animation: wan 1s linear infinite;
-			}
-				@keyframes wan{
-				0%{
-					color:lightblue;
-						display: none;
-				}
-				65%{
-					color: #f5fd1f;
-					display: block;
-				}
-				100%{
-					color:purple;
-					display: block;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<div class="wrap">
-			<div class="wan">
-				<h1>晚</h1>
-				<h1>安</h1>
-			</div>
-			<div class="box1">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-			<div class="box2">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-			<div class="box3">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-			<div class="box4">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-		</div>
-	</body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  .wan{
+    position: absolute;
+    margin-left:510px;
+    margin-top:120px;
+    font-size: 72px;
+    animation: wan 1s linear infinite;
+  }
+    @keyframes wan{
+        0%{
+          color:lightblue;
+            display: none;
+        }
+        65%{
+          color: #f5fd1f;
+          display: block;
+        }
+        100%{
+          color:purple;
+          display: block;
+        }
+      }
+</style>
+<body>
+  <div class="wan">
+    <h1>晚安</h1>
+  </div>
+  <script>
+  const canvas = document.createElement('canvas');
+canvas.style.position = 'absolute';
+canvas.style.top = 0;
+canvas.style.left = 0;
+canvas.style.zIndex = -1;
+document.body.appendChild(canvas);
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+const c = canvas.getContext('2d');
+const skyStarsArray = []; // 星空星星数组
+const starsArray = []; // 坠落星星数组
+const explosionsArray = []; // 爆炸粒子数组
+const skyStarsCount = 400; // 星空初始生成星星数量
+const skyStarsVelocity = 0.1; // 星空平移速度
+const backgroundGradient = c.createLinearGradient(0, 0, 0, canvas.height); //4个参数:startX,startY,EndX,EndY
+backgroundGradient.addColorStop(0, 'rgba(23, 30, 38, 0.7)');
+backgroundGradient.addColorStop(1, 'rgba(63, 88, 107, 0.7)');
+
+function init() {
+  drawSkyStars(); // 初始化背景星星
+  drawStars(); // 初始化坠落的星星
+}
+
+// 画山
+function drawMountains(number, y, height, color, offset) {
+  c.save();
+  c.fillStyle = color;
+  const width = canvas.width / number;
+  // 循环绘制
+  for (let i = 0; i < number; i++) {
+    c.beginPath();
+    c.moveTo(width * i - offset, y);
+    c.lineTo(width * i + width + offset, y);
+    c.lineTo(width * i + width / 2, y - height);
+    c.closePath();
+    c.fill();
+  }
+  c.restore();
+}
+
+function Skystar(x) {
+  this.x = x || (Math.random() - 0.5) * 2 * canvas.width;
+  this.y = Math.random() * canvas.height;
+  this.color = '#ccc';
+  this.shadowColor = '#E3EAEF';
+  this.radius = Math.random() * 3;
+}
+
+Skystar.prototype.draw = function() {
+  c.save();
+  c.beginPath();
+  c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+  c.shadowColor = this.shadowColor;
+  c.shadowBlur = Math.random() * 10 + 10;
+  c.shadowOffsetX = 0;
+  c.shadowOffsetY = 0;
+  c.fillStyle = this.color;
+  c.fill();
+  c.closePath();
+  c.restore();
+};
+
+Skystar.prototype.update = function() {
+  this.draw();
+  // 星空一直连续不断向右移
+  this.x += skyStarsVelocity;
+  // y方向上有一个从上到下的偏移量，这里用cos函数来表示，模拟地球自转时看到的星空
+  let angle = Math.PI / (canvas.width / skyStarsVelocity) * (this.x / skyStarsVelocity);
+  this.y += this.x > 0 ? -Math.cos(angle) * 0.03 : 0;
+};
+
+function drawSkyStars() {
+  for (let i = 0; i < skyStarsCount; i++) {
+    skyStarsArray.push(new Skystar());
+  }
+}
+
+function Star() {
+  this.radius = Math.random() * 10 + 5;
+  this.x = Math.random() * (canvas.width - this.radius * 2) + this.radius;
+  this.y = -Math.random() * canvas.height;
+  this.velocity = {
+    x: (Math.random() - 0.5) * 20,
+    y: 5,
+    rotate: 5
+  };
+  this.rotate = Math.sign(this.velocity.x) * Math.random() * Math.PI * 2;
+  this.friction = 0.7;
+  this.gravity = 0.5;
+  this.opacity = 1;
+  this.shadowColor = '#E3EAEF';
+  this.shadowBlur = 20;
+  this.timeToLive = 200;
+  this.die = false;
+}
+
+Star.prototype.draw = function() {
+  c.save();
+  c.beginPath();
+  // 画五角星
+  for (let i = 0; i < 5; i++) {
+    c.lineTo(
+      Math.cos((18 + i * 72 - this.rotate) / 180 * Math.PI) *
+      this.radius +
+      this.x,
+      -Math.sin((18 + i * 72 - this.rotate) / 180 * Math.PI) *
+      this.radius +
+      this.y
+    );
+    c.lineTo(
+      Math.cos((54 + i * 72 - this.rotate) / 180 * Math.PI) *
+      this.radius *
+      0.5 +
+      this.x,
+      -Math.sin((54 + i * 72 - this.rotate) / 180 * Math.PI) *
+      this.radius *
+      0.5 +
+      this.y
+    );
+  }
+  c.shadowColor = this.shadowColor;
+  c.shadowBlur = this.shadowBlur;
+  c.shadowOffsetX = 0;
+  c.shadowOffsetY = 0;
+  c.fillStyle = 'rgba(255,255,255,' + this.opacity + ')';
+  c.fill();
+  c.closePath();
+  c.restore();
+};
+
+Star.prototype.update = function() {
+  this.draw();
+  // 碰到两边墙壁
+  if (
+    this.x + this.radius + this.velocity.x > canvas.width ||
+    this.x - this.radius + this.velocity.x < 0
+  ) {
+    this.velocity.x *= -this.friction; // 碰到两边墙壁，横向速度损失，同时方向反转
+    this.velocity.rotate *= -this.friction; // 旋转速度也损失，同时方向反转
+  }
+  // 碰到地面
+  if (this.y + this.radius + this.velocity.y > canvas.height) {
+    // 如果没到最小半径，则产生爆炸效果
+    if (this.radius > 1) {
+      explosionsArray.push(new Explosion(this));
+    }
+    this.velocity.y *= -this.friction; // 每次碰撞，速度都损失，同时方向反转
+    this.velocity.rotate *= (Math.random() - 0.5) * 20; // 每次碰到地面旋转速度都随机
+    this.radius -= 3;
+    // 修正如果半径小等于1，直接定为1
+    if (this.radius <= 1) {
+      this.radius = 1;
+    }
+  } else {
+    this.velocity.y += this.gravity; // 没碰到地面，速度增加
+  }
+
+  this.x += this.velocity.x;
+  this.y += this.velocity.y;
+  this.rotate += this.velocity.rotate;
+
+  // 进入消失倒计时
+  if (this.radius - 1 <= 0 && !this.die) {
+    this.timeToLive--;
+    this.opacity -= 1 / Math.max(1, this.timeToLive); // 不透明从慢到快
+    if (this.timeToLive < 0) {
+      this.die = true;
+    }
+  }
+};
+
+// 先画5个星星
+function drawStars() {
+  for (let i = 0; i < 5; i++) {
+    starsArray.push(new Star());
+  }
+}
+
+function Explosion(star) {
+  this.particles = []; // 用来存放爆炸粒子
+  this.init(star);
+}
+
+Explosion.prototype.init = function(star) {
+  for (let i = 0; i < 4 + Math.random() * 10; i++) {
+    const dx = (Math.random() - 0.5) * 8; // 随机生成的x方向速度
+    const dy = (Math.random() - 0.5) * 20; // 随机生成的y方向速度
+    this.particles.push(new Particle(star.x, star.y, dx, dy)); // 把坐标和速度传给Particle构造函数
+  }
+};
+
+Explosion.prototype.update = function() {
+  this.particles.forEach((particle, index, particles) => {
+    if (particle.timeToLive <= 0) {
+      // 生命周期结束
+      particles.splice(index, 1);
+      return;
+    }
+    particle.update();
+  });
+};
+
+function Particle(x, y, dx, dy) {
+  this.x = x;
+  this.y = y;
+  this.dx = dx;
+  this.dy = dy;
+  this.size = {
+    width: 2,
+    height: 2
+  };
+  this.friction = 0.7;
+  this.gravity = 0.5;
+  this.opacity = 1;
+  this.timeToLive = 200;
+  this.shadowColor = '#E3EAEF';
+}
+
+Particle.prototype.draw = function() {
+  c.save();
+  c.fillStyle = 'rgba(227, 234, 239,' + this.opacity + ')';
+  c.shadowColor = this.shadowColor;
+  c.shadowBlur = 20;
+  c.shadowOffsetX = 0;
+  c.shadowOffsetY = 0;
+  c.fillRect(this.x, this.y, this.size.width, this.size.height);
+  c.restore();
+};
+
+Particle.prototype.update = function() {
+  this.draw();
+  // 碰到两边墙壁
+  if (
+    this.x + this.size.width + this.dx > canvas.width ||
+    this.x + this.dx < 0
+  ) {
+    this.dx *= -this.friction;
+  }
+  // 碰到地面
+  if (this.y + this.size.height + this.dy > canvas.height) {
+    this.dy *= -this.friction;
+  } else {
+    this.dy += this.gravity;
+  }
+  this.x += this.dx;
+  this.y += this.dy;
+
+  this.timeToLive--;
+  this.opacity -= 1 / this.timeToLive; //不透明度ease-in效果
+};
+
+function animation() {
+  requestAnimationFrame(animation);
+  // 画背景
+  c.fillStyle = backgroundGradient;
+  c.fillRect(0, 0, canvas.width, canvas.height);
+  // 画星星
+  skyStarsArray.forEach((skyStar, index) => {
+    // 如果超出canvas，则去除这颗星星，在canvas左侧重新生成一颗
+    if (skyStar.x - skyStar.radius - 20 > canvas.width) {
+      skyStarsArray.splice(index, 1);
+      skyStarsArray.push(new Skystar(-Math.random() * canvas.width));
+      return;
+    }
+    skyStar.update();
+  });
+ 
+  // 画地面
+  c.fillStyle = '#182028';
+  c.fillRect(0, canvas.height * 0.85, canvas.width, canvas.height * 0.15);
+  // 画坠落的星星
+  starsArray.forEach((star, index) => {
+    if (star.die) {
+      starsArray.splice(index, 1);
+      return;
+    }
+    star.update();
+  });
+  // 循环更新爆炸点
+  explosionsArray.forEach((explosion, index) => {
+    if (explosion.particles.length === 0) {
+      explosionsArray.splice(index, 1);
+      return;
+    }
+    explosion.update();
+  });
+}
+
+init();
+animation();
+  </script>
+</body>
 </html>
