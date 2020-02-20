@@ -1,327 +1,115 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-</head>
-<style>
-  .wan{
-    position: absolute;
-    margin-left:510px;
-    margin-top:120px;
-    font-size: 72px;
-    animation: wan 1s linear infinite;
-  }
-    @keyframes wan{
-        0%{
-          color:lightblue;
-            display: none;
-        }
-        65%{
-          color: #f5fd1f;
-          display: block;
-        }
-        100%{
-          color:purple;
-          display: block;
-        }
-      }
-</style>
-<body>
-  <div class="wan">
-    <h1>晚安</h1>
-  </div>
-  <script>
-  const canvas = document.createElement('canvas');
-canvas.style.position = 'absolute';
-canvas.style.top = 0;
-canvas.style.left = 0;
-canvas.style.zIndex = -1;
-document.body.appendChild(canvas);
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-const c = canvas.getContext('2d');
-const skyStarsArray = []; // 星空星星数组
-const starsArray = []; // 坠落星星数组
-const explosionsArray = []; // 爆炸粒子数组
-const skyStarsCount = 400; // 星空初始生成星星数量
-const skyStarsVelocity = 0.1; // 星空平移速度
-const backgroundGradient = c.createLinearGradient(0, 0, 0, canvas.height); //4个参数:startX,startY,EndX,EndY
-backgroundGradient.addColorStop(0, 'rgba(23, 30, 38, 0.7)');
-backgroundGradient.addColorStop(1, 'rgba(63, 88, 107, 0.7)');
-
-function init() {
-  drawSkyStars(); // 初始化背景星星
-  drawStars(); // 初始化坠落的星星
-}
-
-// 画山
-function drawMountains(number, y, height, color, offset) {
-  c.save();
-  c.fillStyle = color;
-  const width = canvas.width / number;
-  // 循环绘制
-  for (let i = 0; i < number; i++) {
-    c.beginPath();
-    c.moveTo(width * i - offset, y);
-    c.lineTo(width * i + width + offset, y);
-    c.lineTo(width * i + width / 2, y - height);
-    c.closePath();
-    c.fill();
-  }
-  c.restore();
-}
-
-function Skystar(x) {
-  this.x = x || (Math.random() - 0.5) * 2 * canvas.width;
-  this.y = Math.random() * canvas.height;
-  this.color = '#ccc';
-  this.shadowColor = '#E3EAEF';
-  this.radius = Math.random() * 3;
-}
-
-Skystar.prototype.draw = function() {
-  c.save();
-  c.beginPath();
-  c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-  c.shadowColor = this.shadowColor;
-  c.shadowBlur = Math.random() * 10 + 10;
-  c.shadowOffsetX = 0;
-  c.shadowOffsetY = 0;
-  c.fillStyle = this.color;
-  c.fill();
-  c.closePath();
-  c.restore();
-};
-
-Skystar.prototype.update = function() {
-  this.draw();
-  // 星空一直连续不断向右移
-  this.x += skyStarsVelocity;
-  // y方向上有一个从上到下的偏移量，这里用cos函数来表示，模拟地球自转时看到的星空
-  let angle = Math.PI / (canvas.width / skyStarsVelocity) * (this.x / skyStarsVelocity);
-  this.y += this.x > 0 ? -Math.cos(angle) * 0.03 : 0;
-};
-
-function drawSkyStars() {
-  for (let i = 0; i < skyStarsCount; i++) {
-    skyStarsArray.push(new Skystar());
-  }
-}
-
-function Star() {
-  this.radius = Math.random() * 10 + 5;
-  this.x = Math.random() * (canvas.width - this.radius * 2) + this.radius;
-  this.y = -Math.random() * canvas.height;
-  this.velocity = {
-    x: (Math.random() - 0.5) * 20,
-    y: 5,
-    rotate: 5
-  };
-  this.rotate = Math.sign(this.velocity.x) * Math.random() * Math.PI * 2;
-  this.friction = 0.7;
-  this.gravity = 0.5;
-  this.opacity = 1;
-  this.shadowColor = '#E3EAEF';
-  this.shadowBlur = 20;
-  this.timeToLive = 200;
-  this.die = false;
-}
-
-Star.prototype.draw = function() {
-  c.save();
-  c.beginPath();
-  // 画五角星
-  for (let i = 0; i < 5; i++) {
-    c.lineTo(
-      Math.cos((18 + i * 72 - this.rotate) / 180 * Math.PI) *
-      this.radius +
-      this.x,
-      -Math.sin((18 + i * 72 - this.rotate) / 180 * Math.PI) *
-      this.radius +
-      this.y
-    );
-    c.lineTo(
-      Math.cos((54 + i * 72 - this.rotate) / 180 * Math.PI) *
-      this.radius *
-      0.5 +
-      this.x,
-      -Math.sin((54 + i * 72 - this.rotate) / 180 * Math.PI) *
-      this.radius *
-      0.5 +
-      this.y
-    );
-  }
-  c.shadowColor = this.shadowColor;
-  c.shadowBlur = this.shadowBlur;
-  c.shadowOffsetX = 0;
-  c.shadowOffsetY = 0;
-  c.fillStyle = 'rgba(255,255,255,' + this.opacity + ')';
-  c.fill();
-  c.closePath();
-  c.restore();
-};
-
-Star.prototype.update = function() {
-  this.draw();
-  // 碰到两边墙壁
-  if (
-    this.x + this.radius + this.velocity.x > canvas.width ||
-    this.x - this.radius + this.velocity.x < 0
-  ) {
-    this.velocity.x *= -this.friction; // 碰到两边墙壁，横向速度损失，同时方向反转
-    this.velocity.rotate *= -this.friction; // 旋转速度也损失，同时方向反转
-  }
-  // 碰到地面
-  if (this.y + this.radius + this.velocity.y > canvas.height) {
-    // 如果没到最小半径，则产生爆炸效果
-    if (this.radius > 1) {
-      explosionsArray.push(new Explosion(this));
-    }
-    this.velocity.y *= -this.friction; // 每次碰撞，速度都损失，同时方向反转
-    this.velocity.rotate *= (Math.random() - 0.5) * 20; // 每次碰到地面旋转速度都随机
-    this.radius -= 3;
-    // 修正如果半径小等于1，直接定为1
-    if (this.radius <= 1) {
-      this.radius = 1;
-    }
-  } else {
-    this.velocity.y += this.gravity; // 没碰到地面，速度增加
-  }
-
-  this.x += this.velocity.x;
-  this.y += this.velocity.y;
-  this.rotate += this.velocity.rotate;
-
-  // 进入消失倒计时
-  if (this.radius - 1 <= 0 && !this.die) {
-    this.timeToLive--;
-    this.opacity -= 1 / Math.max(1, this.timeToLive); // 不透明从慢到快
-    if (this.timeToLive < 0) {
-      this.die = true;
-    }
-  }
-};
-
-// 先画5个星星
-function drawStars() {
-  for (let i = 0; i < 5; i++) {
-    starsArray.push(new Star());
-  }
-}
-
-function Explosion(star) {
-  this.particles = []; // 用来存放爆炸粒子
-  this.init(star);
-}
-
-Explosion.prototype.init = function(star) {
-  for (let i = 0; i < 4 + Math.random() * 10; i++) {
-    const dx = (Math.random() - 0.5) * 8; // 随机生成的x方向速度
-    const dy = (Math.random() - 0.5) * 20; // 随机生成的y方向速度
-    this.particles.push(new Particle(star.x, star.y, dx, dy)); // 把坐标和速度传给Particle构造函数
-  }
-};
-
-Explosion.prototype.update = function() {
-  this.particles.forEach((particle, index, particles) => {
-    if (particle.timeToLive <= 0) {
-      // 生命周期结束
-      particles.splice(index, 1);
-      return;
-    }
-    particle.update();
-  });
-};
-
-function Particle(x, y, dx, dy) {
-  this.x = x;
-  this.y = y;
-  this.dx = dx;
-  this.dy = dy;
-  this.size = {
-    width: 2,
-    height: 2
-  };
-  this.friction = 0.7;
-  this.gravity = 0.5;
-  this.opacity = 1;
-  this.timeToLive = 200;
-  this.shadowColor = '#E3EAEF';
-}
-
-Particle.prototype.draw = function() {
-  c.save();
-  c.fillStyle = 'rgba(227, 234, 239,' + this.opacity + ')';
-  c.shadowColor = this.shadowColor;
-  c.shadowBlur = 20;
-  c.shadowOffsetX = 0;
-  c.shadowOffsetY = 0;
-  c.fillRect(this.x, this.y, this.size.width, this.size.height);
-  c.restore();
-};
-
-Particle.prototype.update = function() {
-  this.draw();
-  // 碰到两边墙壁
-  if (
-    this.x + this.size.width + this.dx > canvas.width ||
-    this.x + this.dx < 0
-  ) {
-    this.dx *= -this.friction;
-  }
-  // 碰到地面
-  if (this.y + this.size.height + this.dy > canvas.height) {
-    this.dy *= -this.friction;
-  } else {
-    this.dy += this.gravity;
-  }
-  this.x += this.dx;
-  this.y += this.dy;
-
-  this.timeToLive--;
-  this.opacity -= 1 / this.timeToLive; //不透明度ease-in效果
-};
-
-function animation() {
-  requestAnimationFrame(animation);
-  // 画背景
-  c.fillStyle = backgroundGradient;
-  c.fillRect(0, 0, canvas.width, canvas.height);
-  // 画星星
-  skyStarsArray.forEach((skyStar, index) => {
-    // 如果超出canvas，则去除这颗星星，在canvas左侧重新生成一颗
-    if (skyStar.x - skyStar.radius - 20 > canvas.width) {
-      skyStarsArray.splice(index, 1);
-      skyStarsArray.push(new Skystar(-Math.random() * canvas.width));
-      return;
-    }
-    skyStar.update();
-  });
- 
-  // 画地面
-  c.fillStyle = '#182028';
-  c.fillRect(0, canvas.height * 0.85, canvas.width, canvas.height * 0.15);
-  // 画坠落的星星
-  starsArray.forEach((star, index) => {
-    if (star.die) {
-      starsArray.splice(index, 1);
-      return;
-    }
-    star.update();
-  });
-  // 循环更新爆炸点
-  explosionsArray.forEach((explosion, index) => {
-    if (explosion.particles.length === 0) {
-      explosionsArray.splice(index, 1);
-      return;
-    }
-    explosion.update();
-  });
-}
-
-init();
-animation();
-  </script>
-</body>
-</html>
+﻿<!DOCTYPE html>  
+<head>  
+    <title>HTML5 GetUserMedia Demo</title>  
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />  
+</head>  
+<body>  
+    <input type="button" title="开启摄像头" value="开启摄像头" οnclick="getMedia();" /><br />  
+    <video height="120px" autoplay="autoplay"></video><hr />  
+    <input type="button" title="拍照" value="拍照" οnclick="getPhoto();" /><br />  
+    <canvas id="canvas1" height="120px" ></canvas><hr />  
+    <input type="button" title="视频" value="视频" οnclick="getVedio();" /><br />  
+    <canvas id="canvas2" height="120px"></canvas>  
+  
+    <script type="text/javascript">  
+        var video = document.querySelector('video');  
+        var audio, audioType;  
+  
+        var canvas1 = document.getElementById('canvas1');  
+        var context1 = canvas1.getContext('2d');  
+  
+        var canvas2 = document.getElementById('canvas2');  
+        var context2 = canvas2.getContext('2d');  
+  
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;  
+        window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;  
+  
+        var exArray = []; //存储设备源ID  
+        MediaStreamTrack.getSources(function (sourceInfos) {  
+            for (var i = 0; i != sourceInfos.length; ++i) {  
+                var sourceInfo = sourceInfos[i];  
+                //这里会遍历audio,video，所以要加以区分  
+                if (sourceInfo.kind === 'video') {  
+                    exArray.push(sourceInfo.id);  
+                }  
+            }  
+        });  
+  
+        function getMedia() {  
+            if (navigator.getUserMedia) {  
+                navigator.getUserMedia({  
+                    'video': {  
+                        'optional': [{  
+                            'sourceId': exArray[1] //0为前置摄像头，1为后置  
+                        }]  
+                    },  
+                    'audio':true  
+                }, successFunc, errorFunc);    //success是获取成功的回调函数  
+            }  
+            else {  
+                alert('Native device media streaming (getUserMedia) not supported in this browser.');  
+            }  
+        }  
+  
+        function successFunc(stream) {  
+            //alert('Succeed to get media!');  
+            if (video.mozSrcObject !== undefined) {  
+                //Firefox中，video.mozSrcObject最初为null，而不是未定义的，我们可以靠这个来检测Firefox的支持  
+                video.mozSrcObject = stream;  
+            }  
+            else {  
+                video.src = window.URL && window.URL.createObjectURL(stream) || stream;  
+            }  
+  
+            //video.play();  
+  
+            // 音频  
+            audio = new Audio();  
+            audioType = getAudioType(audio);  
+            if (audioType) {  
+                audio.src = 'polaroid.' + audioType;  
+                audio.play();  
+            }  
+        }  
+        function errorFunc(e) {  
+            alert('Error！'+e);  
+        }  
+  
+          
+        // 将视频帧绘制到Canvas对象上,Canvas每60ms切换帧，形成肉眼视频效果  
+        function drawVideoAtCanvas(video,context) {  
+            window.setInterval(function () {  
+                context.drawImage(video, 0, 0,90,120);  
+            }, 60);  
+        }  
+  
+        //获取音频格式  
+        function getAudioType(element) {  
+            if (element.canPlayType) {  
+                if (element.canPlayType('audio/mp4; codecs="mp4a.40.5"') !== '') {  
+                    return ('aac');  
+                } else if (element.canPlayType('audio/ogg; codecs="vorbis"') !== '') {  
+                    return ("ogg");  
+                }  
+            }  
+            return false;  
+        }  
+  
+        // vedio播放时触发，绘制vedio帧图像到canvas  
+//        video.addEventListener('play', function () {  
+//            drawVideoAtCanvas(video, context2);  
+//        }, false);  
+  
+        //拍照  
+        function getPhoto() {  
+            context1.drawImage(video, 0, 0,90,120); //将video对象内指定的区域捕捉绘制到画布上指定的区域，实现拍照。  
+        }  
+  
+        //视频  
+        function getVedio() {  
+            drawVideoAtCanvas(video, context2);  
+        }  
+  
+    </script>  
+</body>  
